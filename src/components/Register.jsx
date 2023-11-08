@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/Provider";
 
 const Register = () => {
+    const {user} = useContext(AuthContext);
+    console.log(user);
 
     const handleRegister = event =>{
         event.preventDefault();
