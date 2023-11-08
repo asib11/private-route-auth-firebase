@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../Provider/Provider";
 
 const Register = () => {
-    const {user} = useContext(AuthContext);
+    const {user, createAuth} = useContext(AuthContext);
     console.log(user);
 
     const handleRegister = event =>{
@@ -13,13 +13,21 @@ const Register = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(name,email, password);
+
+        createAuth(email, password)
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+            form.reset();
+        })
+        .catch(error => console.log(error))
     }
 
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col">
                 <div className="text-center">
-                    <h1 className="text-5xl font-bold">Login now!</h1>
+                    <h1 className="text-5xl font-bold">Register now!</h1>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <form onSubmit={handleRegister} className="card-body">
