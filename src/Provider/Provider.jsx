@@ -17,6 +17,7 @@ const Provider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password);
     };
 
+    //observe auth state change
     useEffect(() => {
         const unsubscriber = onAuthStateChanged(auth, currentUser => {
             console.log('chnage new authwe',currentUser);
